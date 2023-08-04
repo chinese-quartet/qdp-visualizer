@@ -2,7 +2,7 @@
 
 sidebar <- dashboardSidebar(
   tags$link(rel = "stylesheet", type = "text/css", href = "custom.css"),
-  tags$style(".left-side, .main-sidebar {padding-top: 0px}"),
+  tags$style(".left-side, .main-sidebar {padding-top: 0px};"),
   width = 300,
   sidebarMenu(id="tabs",
               menuItem("Summary", 
@@ -18,28 +18,27 @@ sidebar <- dashboardSidebar(
                          "input.tabs === 'mendelian'",
                          div(
                            #style = "font-size:10px; font-family:serif; font-weight:normal",
-                           column(12, 
-                                  
-                                  selectInput("Mendelian_Violations",
-                                              label = 'Mendelian Violations',
-                                              choices = c("Mendelian Violations Ratio", "Mendelian Violation Quality"),
-                                              selected = "Mendelian Violations Ratio"),
-                                  conditionalPanel("input.Mendelian_Violations == 'Mendelian Violations Ratio'",
-                                                   selectInput("Mendelian_Violations_type3",
-                                                               label = 'Mendelian Violations Type',
-                                                               choices = c("SNV","Indel","Deletion","Insertion"),
-                                                               selected = "SNV"),
-                                                   sliderInput("mendelian_title_size", "Title Size",
-                                                               min = 0, max = 30, value = 15,  step = 1),
-                                                   sliderInput("mendelian_plot_figHeight", "Main Figure Height",
-                                                               min = 0, max = 1, value = 0.5,  step = 0.1),
-                                                   sliderInput("mendelian_plot_figMargin", "Main Figure Margin",
-                                                               min = 0, max = 1, value = 0.01,  step = 0.01),
-                                                   #mendelian_plot_Showlegend
-                                                   selectInput("mendelian_plot_Showlegend",
-                                                               label = 'Show Legend',
-                                                               choices=c("YES"=TRUE, "NO"=FALSE),
-                                                               selected =TRUE) #,
+                           column(12,                                   
+                              selectInput("Mendelian_Violations",
+                                          label = 'Mendelian Violations',
+                                          choices = c("Mendelian Violations Ratio", "Mendelian Violation Quality"),
+                                          selected = "Mendelian Violations Ratio"),
+                              conditionalPanel("input.Mendelian_Violations == 'Mendelian Violations Ratio'",
+                                                selectInput("Mendelian_Violations_type3",
+                                                            label = 'Mendelian Violations Type',
+                                                            choices = c("SNV","Indel","Deletion","Insertion"),
+                                                            selected = "SNV"),
+                                                sliderInput("mendelian_title_size", "Title Size",
+                                                            min = 0, max = 30, value = 15,  step = 1),
+                                                sliderInput("mendelian_plot_figHeight", "Main Figure Height",
+                                                            min = 0, max = 1, value = 0.5,  step = 0.1),
+                                                sliderInput("mendelian_plot_figMargin", "Main Figure Margin",
+                                                            min = 0, max = 1, value = 0.01,  step = 0.01),
+                                                #mendelian_plot_Showlegend
+                                                selectInput("mendelian_plot_Showlegend",
+                                                            label = 'Show Legend',
+                                                            choices=c("YES"=TRUE, "NO"=FALSE),
+                                                            selected =TRUE) #,
                                                    
                                   ),
                                   
@@ -456,7 +455,9 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the Mendelian violation of variants. The main parameters, Mendelian Violations, can be either 'Mendelian Violation Ratio' or 'Mendelian Violation Quality'."),
                    withSpinner(plotlyOutput("mendelian_plot", height = "600px")), 
+                   uiOutput("plot_mendelian_legend"),
                    collapsible = FALSE,
                   #  title = "Mendelian Violations", 
                    solidHeader = TRUE)
@@ -471,9 +472,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the distribution of filtered variants and reference variants. The main parameter, Variant Quality Type, is used to display various types of mutations, which can be 'Structural Variants' or 'Small Variants'."),
                    withSpinner(plotlyOutput("Variant_Quality_plot", height = "600px")), 
+                   uiOutput("plot_Variant_Quality_legend"),
                    collapsible = FALSE,
-                   title = "Variant Quality",
+                  #  title = "Variant Quality",
                    solidHeader = TRUE)
         )
       )
@@ -486,9 +489,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the Mendelian consistent ratio of variants. The main parameter, Variant Type, is used to display various types of mutations, which can be 'Structural Variants' or 'Small Variants'."),
                    withSpinner(plotlyOutput("diff_region_plot", height = "600px")), 
+                   uiOutput("plot_diff_region_legend"),
                    collapsible = FALSE,
-                   title = "Difficult Genomic Regions",  
+                  #  title = "Difficult Genomic Regions",  
                    solidHeader = TRUE)
         )
       )
@@ -501,9 +506,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the percentage of validated Mendelian consistent variants. The main parameter, Variant Type, is used to display various types of mutations, which can be 'SV Validation' or 'Small Variants Validation'."),
                    withSpinner(plotlyOutput("variant_validation_plot", height = "600px")), 
+                   uiOutput("plot_variant_validation_legend"),
                    collapsible = FALSE,
-                   title = "Variant Validation",  
+                  #  title = "Variant Validation",  
                    solidHeader = TRUE)
         )
       )
@@ -516,9 +523,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the validation of reference datasets by other platforms. The main parameter, SV Reference Type, can be 'Summary' or 'Detail'."),
                    withSpinner(plotlyOutput("SV_Reference_plot", height = "600px")), 
+                   uiOutput("plot_SV_Reference_legend"),
                    collapsible = FALSE,
-                   title = "SV Reference", 
+                  #  title = "SV Reference", 
                    solidHeader = TRUE)
         )
       )
@@ -531,9 +540,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the performance assessment using Quartet Reference Materials and Reference Datasets. The main parameter, Variant Type, is used to display various types of mutations, which can be 'SNV' or 'SV'."),
                    withSpinner(plotlyOutput("Performance_Assessment_plot", height = "600px")), 
+                   uiOutput("plot_Performance_Assessment_legend"),
                    collapsible = FALSE,
-                   title = "Performance Assessment",  
+                  #  title = "Performance Assessment",  
                    solidHeader = TRUE)
         )
       )
@@ -545,9 +556,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the analysis of reproducibility of Quartet_D5 between 27 small variant call sets and 30 SVs (Structural Variants) call sets. The main parameter, Variant Type, is used to display various types of mutations, which can be either 'SV' or 'SNV' (Single Nucleotide Variant)."),
                    withSpinner(plotlyOutput("Variant_Statistics_plot", height = "600px")), 
+                   uiOutput("plot_Variant_Statistics_legend"),
                    collapsible = FALSE,
-                   title = "Variant Statistics",  
+                  #  title = "Variant Statistics",  
                    solidHeader = TRUE)
         )
       )
@@ -559,9 +572,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the variability between platforms and analysis pipelines. The main parameter, Variant Type, is used to display various types of mutations, which can be 'SNV', 'INDEL', 'Insertion', 'Deletion', 'Duplication', 'Inversion', or 'Breakend'."),
                    withSpinner(plotlyOutput("Jaccard_Index_plot", height = "600px")), 
+                   uiOutput("plot_Jaccard_Index_legend"),
                    collapsible = FALSE,
-                   title = "Jaccard Index",  
+                  #  title = "Jaccard Index",  
                    solidHeader = TRUE)
         )
       )
@@ -573,9 +588,10 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is designed to visualize the potential sequencing errors estimated by Mendelian violations in Quartet families, Trio families, or the reproducibility of twins. The main parameter, Variant Type, is used to display various types of mutations, which can be 'Structural Variants' or 'Small Variants'. The data used for this plot were calculated based on Quartet_D5."),
                    withSpinner(plotlyOutput("Quartet_Advantage_plot", height = "600px")), 
                    collapsible = FALSE,
-                   title = "Quartet Advantage",  
+                  #  title = "Quartet Advantage",  
                    solidHeader = TRUE)
         )
       )
@@ -587,9 +603,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the Mendelian violated small variants and Mendelian consistent small variants. The main parameter, Distribution Type, can be 'Depth', 'Allele Frequency', 'Genotype Quality', or 'Mapping Quality'."),
                    withSpinner(plotlyOutput("Small_Variants_Distribution_plot", height = "600px")), 
+                   uiOutput("plot_Small_Variants_Distribution_legend"),
                    collapsible = FALSE,
-                   title = "Small Variants Distribution",  
+                  #  title = "Small Variants Distribution",  
                    solidHeader = TRUE)
         )
       )
@@ -601,9 +619,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the short- and long-read sequencing datasets used to build reference datasets. The main parameter, Variant Type, is used to display various types of mutations, which can be either 'Small Variants' or 'Structural Variants'."),
                    withSpinner(plotlyOutput("Reference_Datasets_Summary_plot", height = "600px")), 
+                   uiOutput("plot_Reference_Datasets_Summary_legend"),
                    collapsible = FALSE,
-                   title = "Reference Datasets Summary",  
+                  #  title = "Reference Datasets Summary",  
                    solidHeader = TRUE)
         )
       )
@@ -615,9 +635,11 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the variants aggregated over Tier 1 and Tier 2 INSs and DELs. The main parameter, Variant Type, is used to display various types of mutations, which can be either 'Insertion' or 'Deletion'."),
                    withSpinner(plotlyOutput("Large_Deletion_plot", height = "600px")), 
+                   uiOutput("plot_Large_Deletion_legend"),
                    collapsible = FALSE,
-                   title = "Large Deletion",  
+                  #  title = "Large Deletion",  
                    solidHeader = TRUE)
         )
       )

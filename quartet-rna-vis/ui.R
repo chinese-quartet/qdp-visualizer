@@ -216,6 +216,7 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the distribution of the value of SNR, relative correlation and absolute correlation of different datasets."),
                    withSpinner(plotlyOutput("plot_cross_batch", height = "500px")), 
                    uiOutput("plot_cross_batch_legend"),
                    collapsible = FALSE,
@@ -232,6 +233,7 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot is used to visualize the PCA distribution for any single or multiple datasets at different scales."),
                    withSpinner(plotlyOutput("plot_pca", height = "500px")), 
                    uiOutput("plot_pca_legend"),
                    collapsible = FALSE,
@@ -248,6 +250,7 @@ body <- dashboardBody(
       fluidRow(
         column(width = 12,
                box(width = NULL, 
+                   tags$p("The plot summarises and presents the reference dataset performance metrics."),
                    withSpinner(plotlyOutput("plot_RD", height = "500px")), 
                    uiOutput("plot_RD_legend"),
                    collapsible = FALSE,

@@ -98,7 +98,6 @@ shinyServer(function(input, output, session){
 
   output$plot_gene_exp_legend <- renderUI({
     HTML(
-      style="text-align:justify;margin-top: 10px;",
       paste(
         "<br/>In the violin plot, each distinct 'violin' shape represents a separate group. The breadth of each 'violin' at a given point is indicative of the density of samples with an expression level corresponding to that point, effectively illustrating the distribution. Wider sections of the 'violin' are representative of a higher sample density at certain expression levels, suggesting a larger number of samples in the group have those specific expression levels. In contrast, the narrower sections of the 'violin' symbolize fewer samples with that particular level of gene expression.",
         "<br/><br/>The following parameters are used in the plot:",
@@ -207,12 +206,11 @@ shinyServer(function(input, output, session){
 
   output$plot_intra_batch_legend <- renderUI({
     HTML(
-      style="text-align:justify;margin-top: 10px;",
       paste(
         "<br/><br/>The following parameters are used in the plot:",
-        "<b>Intra QC Type</b> can be 'Detected_Gene' or 'Tree_Metrics'. 'Detected_Gene' refers to the quantity of genes detected in the experiment and 'Tree_Metrics' refers to the metric of tree structure (like hierarchical clustering or phylogenetic tree metrics) used in the study.",
+        "<br/><b>Intra QC Type</b> can be 'Detected_Gene' or 'Tree_Metrics'. 'Detected_Gene' refers to the quantity of genes detected in the experiment and 'Tree_Metrics' refers to the metric of tree structure (like hierarchical clustering or phylogenetic tree metrics) used in the study.",
         "<b>Intra Metric</b> outlines the particular metrics within each QC Type used for quality control assessment. This could be SNR (Signal to Noise Ratio), LIR (Log Intensity Ratio), or LRR2 (Log R Ratio squared).",
-        "<b>Group</b> is the category that the sample belongs to. The group can be 'sample', 'batch', 'libraryPrep', 'kit', or 'lab'. These groups represent different stages or aspects of the experimental process:",
+        "<br/><b>Group</b> is the category that the sample belongs to. The group can be 'sample', 'batch', 'libraryPrep', 'kit', or 'lab'. These groups represent different stages or aspects of the experimental process:",
         "<br/>batch: This refers to a set of samples processed at the same time, under the same conditions.",
         "<br/>libraryPrep: This indicates the method (P - PolyA or R - RiboZero) used to prepare the DNA or RNA library for sequencing.",
         "<br/>kit: This refers to the specific commercial kit (BGI, ILM, KAPA, PE, or VAZ) used for library preparation or other experimental steps.",
@@ -369,6 +367,17 @@ shinyServer(function(input, output, session){
     }
   })
 
+  output$plot_cross_batch_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/><br/>The following parameters are used in the plot:",
+        "<br/><b>Cross Batch QC Type</b> can be 'SNR', 'Relative correlation' and 'Absolute correlation'. 'SNR' was established to characterize the ability of a platform, a lab, or a batch to distinguish the intrinsic differences among distinct biological sample groups ('signal') from variations in technical replicates of the same sample group ('noise'). 'Relative correlation' is the Pearson correlation coefficient of ratio-based expression levels of datasets for a given pair of groups. 'Absolute correlation' is the Pearson correlation coefficient of absolute expression levels of datasets for a given sample.",
+        "<br/><b>Figure Type</b> can be 'boxplot' and 'heatmap'. 'Boxplot' shows the overall distribution of  the value of SNR, relative correlation and absolute correlation. 'heatmap' shows the value of SNR, relative correlation and absolute correlation between different datasets.",
+        "<br/><b>Sample</b> item will change according to your choice of 'Relative correlation' and 'Absolute correlation'. 'Relative correlation' has six groups: D6/D5, F7/D5, M8/D5, F7/D6, M8/D6, M8/F7. 'Absolute correlation' has four samples: D5, D6, F7, M8."
+      )
+    )
+  })
+
   #########################pca########################
   observe({
     group_pca  = unique(df_exp_annot[[input$group_pca]])
@@ -472,6 +481,23 @@ shinyServer(function(input, output, session){
           legend = legend_ref,
           margin = margin_ref)
     }
+  })
+
+  output$plot_pca_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/><br/>The following parameters are used in the plot:",
+        "<br/><b>Group</b> can be 'batch', 'libraryPrep', 'lab', 'sample', 'kit' and 'sequcingSite'. batch: This refers to a set of samples processed at the same time, under the same conditions.",
+        "<br/>libraryPrep: This indicates the method (PolyA or RiboZero) used to prepare the DNA or RNA library for sequencing.",
+        "<br/>lab: This indicates the specific laboratory (ABC, ARD, BGI, BRG, FDU, VAZ, WEH or WUX) where the experiment was conducted.",
+        "<br/>sample: This refers to a particular biological specimen (D5, D6, F7, or M8) used for the experiment.",
+        "<br/>kit: This refers to the specific commercial kit (BGI, ILM, KAPA, PE, or VAZ) used for library preparation or other experimental steps.",
+        "<br/>sequcingSite: This refers to the Sequencing Platforms (BGI and ILM).",
+        "<br/><b>PCA Scale</b> can be 'no-scale', 'z-score' and 'relative'. 'no-scale' represents the absolute expression level matrix. 'z-score' represents the z-score corrected expression matrix. 'relative' represents the relative expression level matrix.",
+        "<br/><b>Element of group</b> item will change according to your choice of Group: 'batch', 'libraryPrep', 'lab', 'sample', 'kit' and 'sequcingSite'. For example, when Group selects 'batch', you can select one or more datasets from all batches.",
+        "<br/><b>Reference Sample</b> is only available when PCA Scale selects 'relative', and any sample from D5, D6, D7 and M8 can be selected as the base for calculating the relative expression matrix."
+      )
+    )
   })
 
   ##############################reference dataset##########################
@@ -668,5 +694,22 @@ shinyServer(function(input, output, session){
       }
       }
   })
+
+  output$plot_RD_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/><br/>The following parameters are used in the plot:",
+        "<br/><b>Data Type</b> can be 'Consensus of Detected Genes', 'Distribution of Gene Type', 'Consensus of DEGs', 'Volcano for Ref DEGs', 'Performance Evaluation of RE' and 'Performance Summary'",
+        "<br/>Consensus of Detected Genes: shows the distribution of the number of genes in D5, D6, F7 and M8 samples that can be detected simultaneously in 0-15 datasets.",
+        "<br/>Distribution of Gene Type: shows the distribution of the proportions of different gene types in D5, D6, F7 or M8 samples from different datasets.",
+        "<br/>Consensus of DEGs: shows the distribution of the DEGs in six groups (D6/D5, F7/D5, M8/D5, F7/D6, M8/D6, M8/F7) that can be detected simultaneously in 0-15 datasets.",
+        "<br/>Volcano for Ref DEGs: is a volcano plot showing the distribution of fold change and p-value in six groups (D6/D5, F7/D5, M8/D5, F7/D6, M8/D6, M8/F7)",
+        "<br/>Performance Evaluation of RE: shows the values of relative correlation and MCC for each sample in each dataset through a scatter plot.",
+        "<br/>Performance Summary: is a summary of the SNR, relative correlation, absolute correlation, and relative correlation for the reference datasets. total score is calculated to measure the overall quality of all datasets.",
+        "<br/><b>Group</b> item will change according to your choice of <b>Data Type</b>: Distribution of Geene Type', 'Consenesus of DEGs', 'Volcano for Ref DEGs' and 'Performance Summary'. For example, when Group selects 'Distribution of Geene Type', you can select any sample, such as D5, D6, F7 or M8."
+      )
+    )
+  })
+
   session$onSessionEnded(stopApp)
 })

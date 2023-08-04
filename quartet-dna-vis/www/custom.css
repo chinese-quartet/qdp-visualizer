@@ -14,6 +14,16 @@
     font-size: 1.8rem;
 }
 
-.content-wrapper {
+body {
     min-height: unset !important;
+    height: 100vh !important;
+}
+
+.sidebar-menu {
+    height: 100vh;
+    overflow: scroll !important;
+}
+
+.wrapper {
+    background-color: #ffffff !important;
 }

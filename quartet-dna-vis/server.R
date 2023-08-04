@@ -51,6 +51,16 @@ shinyServer(function(input, output, session){
       
     }
   )
+
+  output$plot_mendelian_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>When the '<b>Mendelian Violation Ratio</b>' section is selected, the other parameter, Mendelian Violations Type, can be used, which includes 'SNV', 'Indel', 'Deletion', or 'Insertion'. In this section, the line plot displays the Mendelian violation ratio of variants with different numbers of times being detected. The bar plot shows the number of variants detected at different numbers of times. The data were calculated based on Quartet_D5.",
+        "<br/>When the '<b>Mendelian Violation Low Quality</b>' section is selected, the other parameter, Mendelian Violations Type, can be used, which includes 'All Quartet Sample', 'Spanning Deletions', or 'Detectable Mendelian Violations'. In this section, the bar plots display the distribution of three types of Mendelian violated small variants on genomic repeat regions, large deletions from reference SVs, and 500 bp surrounding regions of SVs (INS and DELs).",
+        "<br/>When the '<b>Mendelian Violation High Quality</b>' section is selected, the other parameter, Mendelian Violations Type, can be used, which includes 'Small Variant' or 'Structural Variant'. In this section, the bars represent the percentage of small and structural variants on difficult-to-map regions of each call set."
+      )
+    )
+  })
   
   output$mendelian_plot <- renderPlotly({
     
@@ -174,11 +184,8 @@ shinyServer(function(input, output, session){
           ggplotly(p) %>% layout(margin=list(l = input$mendelian_plot_margin, t = input$mendelian_plot_margin, 
                                              r = input$mendelian_plot_margin, b = input$mendelian_plot_margin))
         }
-      }
-      
+      } 
     }
-    
-    
   })
   
   
@@ -193,6 +200,16 @@ shinyServer(function(input, output, session){
     }
     
   )
+
+  output$plot_Variant_Quality_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>The '<b>Structural Variants</b>' section represents the allele frequency and alternative allele depth distribution of filtered SVs and reference SVs.",
+        "<br/>The '<b>Small Variants</b>' section represents the depth, allele frequency, genotype quality, and mapping quality distribution of filtered small variants (green) and reference small variants."
+      )
+    )
+  })
+
   output$Variant_Quality_plot <- renderPlotly({
     if(input$Variant_Quality_type=="Small Variants"){
       big_df<- df_Variant_Quality()
@@ -233,6 +250,17 @@ shinyServer(function(input, output, session){
       readRDS('./data/DNAseq/Difficult_Genomic_Regions/diff_region_sv.rds')
     }
   )
+
+  output$plot_diff_region_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>The '<b>Structural Variants</b>' section represents the Mendelian consistent ratio of SNVs and INDELs on genomic repeat regions, 500 bp surrounding regions of Tier 1 reference SVs, and high-confidence bed regions.",
+        "<br/>The '<b>Small Variants</b>' section represents the Mendelian consistent ratio of DELs and INS on genomic repeat regions and high-confidence bed regions that represent an additional 1000 bp surrounding regions of Tier 1 and Tier 2 reference SVs.",
+        "<br/>The library preparation includes PCR and PCR-free methods. The callers used are cutesv, nanosv, pbsv, sniffle, and svim."
+      )
+    )
+  })
+
   output$diff_region_plot <- renderPlotly({
     if(input$diff_region_variant_type == "Small Variants"){
       
@@ -285,6 +313,17 @@ shinyServer(function(input, output, session){
       readRDS('./data/DNAseq/Variant_Validation/sv_validation.rds')
     }
   )
+
+  output$plot_variant_validation_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>The '<b>SV Validation</b>' section represents the percentage of Mendelian consistent small variants validated by PMRA inside and outside the high-confidence bed regions.",
+        "<br/>The '<b>Small Variants Validation</b>' section represents the percentage of Mendelian consistent SVs validated by other orthogonal technologies (Illumina short-read sequencing, Illumina linked-read sequencing, Bionano, and long-read assembly-based SVs calling) inside and outside the high-confidence bed regions.",
+        "<br/>The library preparation includes PCR and PCR-free methods. The callers used are cutesv, nanosv, pbsv, sniffle, and svim."
+      )
+    )
+  })
+
   output$variant_validation_plot <- renderPlotly({
     if(input$variant_validation_type == "Small Variant Validation"){
   
@@ -347,6 +386,15 @@ shinyServer(function(input, output, session){
     }
   )
   
+  output$plot_SV_Reference_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>In the '<b>Summary</b>' section, the bar plot shows the fraction of reference SVs validated by other technologies (Illumina short-read sequencing, Illumina linked-read sequencing, Bionano, and long-read assembly-based SVs calling). Yellow indicates SVs supported by at least one of the other technologies, while grey indicates SVs not supported by any of the other technologies.",
+        "<br/>In the '<b>Detail</b>' section, the bar plot shows the percentage of reference SVs validated by short-reads, linked-reads, Bionano, and long-read assembly-based SVs call sets. Each technology is represented by a different color for clarity and distinction."
+      )
+    )
+  })
+
   output$SV_Reference_plot <- renderPlotly({
     if(input$SV_Reference_type=="Summary"){
       p <- ggplot(data=df_SV_Reference(), aes(x=type, y=value, fill=variable)) +
@@ -418,6 +466,17 @@ shinyServer(function(input, output, session){
       readRDS(file = paste('./data/DNAseq/Performance_Assessment/sv_mendelian_jaccard.rds')) 
     }
   )
+
+  output$plot_Performance_Assessment_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>The '<b>SNV</b>' section represents the precision and recall of short-read sequencing datasets compared with reference small variants and Mendelian concordance within Quartet families. It also shows reproducibility between twins of short-read sequencing datasets. Boxplots on the edges display the distribution of precision and recall of PCR (red) and PCR-free (blue) datasets.",
+        "<br/>The '<b>SV</b>' section represents the precision and recall of long-read sequencing datasets compared with Tier 1 reference SVs, considering genotypes. It includes Mendelian concordance within Quartet families and reproducibility between twins of long-read sequencing datasets. Boxplots on the edges show precision and recall of different callers. The callers used are cutesv, nanosv, pbsv, sniffle, and svim. The mappers used are ngmlr, minimaps, and pbmm2.",
+        "<br/>Comparing with reference datasets can only estimate the performance for easy-to-detect variants. However, calculating Mendelian concordance within the four Quartet samples can estimate the performance on challenging variants and regions not included in the reference datasets."
+      )
+    )
+  })
+
   output$Performance_Assessment_plot <- renderPlotly({
     subp <- function(){ 
       subplot(
@@ -542,6 +601,16 @@ shinyServer(function(input, output, session){
       readRDS('./data/DNAseq/Variant_Statistics/sv_statistics.rds')
     }
   )
+
+  output$plot_Variant_Statistics_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>The bar colors represent how many times a variant was detected among all call sets. Green to red indicates an increase in the number of times a variant was detected among all replicates.",
+        "<br/>The sequencing sites include ARD, BGI, BRG, NVG, WGE, and WUX. The sequencing platforms consist of DNB-SEQT7, Illumina Hiseq XTen, Illumina Novaseq6000, and MGI-SEQ2000. The library preparation methods include PCR and PCR-free. The callers used are cutesv, nanosv, pbsv, sniffle, and svim. The platforms for SV calling include ont (Nanopore), pb (Pacbio Sequel), and pb2 (Pacbio Sequel II)."
+      )
+    )
+  })
+
   output$Variant_Statistics_plot <- renderPlotly({
     if(input$Variant_Statistics_type=="SNV"){
       dat_long <-  df_Variant_Statistics()
@@ -699,6 +768,17 @@ shinyServer(function(input, output, session){
       read.table('./data/DNAseq/Jaccard_Index/sv_bnd.txt')
     }
   )
+
+  output$plot_Jaccard_Index_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>For pairwise comparison of SNVs and INDELs between 27 small variant call sets of Quartet_D5, the color of each cell corresponds to the reproducibility of any two replicates. This is calculated as the number of shared small variants divided by the union of two call sets, with high similarity shown in red and low similarity in blue.",
+        "<br/>For pairwise comparison of Insertions and Deletions between 30 SVs (Structural Variants) call sets of Quartet_D5, the Jaccard index is calculated based on the number of SVs shared divided by the union of two call sets, ignoring genotypes.",
+        "<br/>For pairwise comparison of duplications, breakends, and inversions between 30 SVs call sets of Quartet_D5, the color of each cell corresponds to the Jaccard index, which is calculated as the number of variants intersection divided by the union of two call sets, with high similarity shown in red and low similarity in blue."
+      )
+    )
+  })
+
   output$Jaccard_Index_plot <- renderPlotly({
     if(input$Jaccard_Index_type=="SNV"){
     heatmaply_SNV(df_Jaccard_Index(),
@@ -799,6 +879,14 @@ shinyServer(function(input, output, session){
   df_Small_Variants_Distribution<- reactive(
   read_feather("./data/DNAseq/Small_Variants_Distribution/Small_Variants_Distribution.feather")
   )
+
+  output$plot_Small_Variants_Distribution_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>The density plots display the sequencing depth, allele frequency, genotype quality, and mapping quality distributions for three types of Mendelian violated small variants and Mendelian consistent small variants. Pink indicates no call or conflicting variants in at least one of the four Quartet samples. Green indicates Mendelian consistent variants. Blue indicates variants overlapped with spanning deletions. Purple indicates detectable variants."
+      )
+    )
+  })
   
   output$Small_Variants_Distribution_plot <- renderPlotly({
     snv_distri_plotly(df_Small_Variants_Distribution(),
@@ -819,6 +907,16 @@ shinyServer(function(input, output, session){
       readRDS('./data/DNAseq/Reference_Datasets_Summary/structral_variant_reference_summary.rds')
     }
   )
+
+  output$plot_Reference_Datasets_Summary_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>In the '<b>Small Variants</b>' section, the plot represents the count of small variants in 108 short-read whole-genome sequencing (WGS) libraries. The bar colors indicate the respective types of small variants.",
+        "<br/>In the '<b>Structural Variants</b>' section, the plot displays the count of structural variants in 120 long-read sequencing call sets. The bar colors represent distinct SV (Structural Variant) types such as insertions (INS), deletions (DEL), duplications (DUP), inversions (INV), and breakends (BND).",
+        "<br/>The sample consists of a father (F7), mother (M8), and monozygotic twin daughters (D5 and D6). The sequence sites include ARD, BGI, BRG, NVG, WGE, and WUX. The sequence platforms consist of DNB-SEQT7, Illumina Hiseq XTen, Illumina Novaseq6000, and MGI-SEQ2000. The library preparation methods include PCR and PCR-free. The callers used are cutesv, nanosv, pbsv, sniffle, and svim. The platforms for SV calling include ont (Nanopore), pb (Pacbio Sequel), and pb2 (Pacbio Sequel II)."
+      )
+    )
+  })
   
   output$Reference_Datasets_Summary_plot <- renderPlotly({
     if(input$Reference_Datasets_Summary_type=="Small Variants"){
@@ -1006,6 +1104,16 @@ shinyServer(function(input, output, session){
       }
     }
   )
+
+  output$plot_Large_Deletion_legend <- renderUI({
+    HTML(
+      paste(
+        "<br/>In the '<b>Insertion</b>' section, the plot shows the total number of small variants aggregated over Tier 1 and Tier 2 INSs and DELs, divided by distance to an SV breakpoint in 500-bp bins. Red indicates variants that passed the voting process, while green indicates irreproducible and filtered variants among replicates.",
+        "<br/>In the '<b>Deletion</b>' section, the plot displays the percentage of filtered variants aggregated over Tier 1 and Tier 2 INSs and DELs, divided by the distance to an SV breakpoint in 500-bp bins. The color and shape of lines represent different libraries and sequencing platforms.",
+        "<br/>The sequence platforms consist of DNB-SEQT7, Illumina Hiseq XTen, Illumina Novaseq6000, and MGI-SEQ2000. The library preparation methods include PCR and PCR-free."
+      )
+    )
+  })
   
   output$Large_Deletion_plot <- renderPlotly({
     if(input$Large_Deletion_show_type=="Filtered Variant"){
