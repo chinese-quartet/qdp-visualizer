@@ -1,0 +1,323 @@
+install.packages("pROC")
+library("pROC")
+install.packages("Rcpp")
+install.packages("survival")
+install.packages("glmnet")
+install.packages("ggpot2")
+install.packages("ggplot2")
+source("https://bioconductor.org/biocLite.com")
+source(http://bioconductor.org/biocLite.com)
+source(http:/bioconductor.org/biocLite.com)
+source(http://bioconductor.org/biocLite.com)
+source("http://bioconductor.org/biocLite.com")
+source("https://bioconductor.org/biAocLite.com")
+source("https://bioconductor.org/biocLite.com")
+source("http://bioconductor.org/biocLite.com")
+source("https://bioconductor.org/biocLite.R")#
+biocLite("limma")
+source("http://bioconductor.org/biocLite.R")#
+biocLite("limma")
+install.packages("mgcv")
+library("macv")
+install.packages("mgcv")
+library("limma")
+install.packages("ggplot2")
+install.packages("dendextend")
+load("/Users/stead/Downloads/dendextend_1.3.0.tar.gz")
+library("dendextend")
+install.packages("mcclust")
+install.packages("mclust")
+library(dendextend)
+install.packages("mclust")
+install.pacakges("mclust")
+install.packages("mclust")
+library("mclust")
+install.packages("mclust")
+source("https://bioconductor.org/biocLite.R")
+source("http://bioconductor.org/biocLite.R")
+install.packages("plyr")
+intall.packages("plyr")
+install.packages("plyr")
+library(plyr)
+install.packages("plyr")
+intall.packages(plyr)
+install.packages("plyr")
+install.packages("ggplot2")
+install.packages("mclust")
+install.packages("dendextend")
+install.packages("gplot")
+install.packages("gplots")
+install.packages("plotly")
+install.packages("gmodels")
+install.packages("limma")
+sourece("https://bioconductor.org/BiocLite.R")
+source("https://bioconductor.org/BiocLite.R")
+install.packages("surv")
+?survival
+source("http://bioconductor.org/biocLite.R")
+install.packages("kernlab")
+instll.packages("reshape2")
+install.packages("reshape2")
+source("https://bioconductor.org/biocLite.R")
+source("http://bioconductor.org/biocLite.R")
+BiocLite("All")
+biocLite("All")
+biocLite("all")
+source("http://bioconductor.org/biocLite.R")
+library("minfi")
+install.packages(GenomicRanges)
+install.packages("GenomicRanges")
+library("minfi")
+source("http://bioconductor.org/biocLite.R")
+biocLite("minfi")
+library("minfi")
+library("doRNG")
+install.packages("doRNG")
+library("minfi")
+install.packages("matrixStats")
+library("minfi")
+library("futile.logger")
+install.packages("futile.logger")
+library("minfi")
+install.packages("reshape")
+library("minfi")
+library("norlmix")
+library("nor1mix")
+install.packages("nor1mix")
+library("minfi")
+library("quadprog")
+install.packages("quadprog")
+library("minfi")
+library("mixOmics")
+install.packages("mixOmics")
+library("minfi")
+biocLite("minfi")
+library("minfi")
+biocLite("IlluminaHumanMethylation450kanno.ilmn12.hg19")
+install.packages("reshape")
+?melt
+install.packages("reshape")
+install.packages("lib")
+reshape
+?melt
+install.packages("reshape")
+melt
+?melt
+install.packages("reshape2")
+melt
+install.packages("plyr")
+install.packages("melt")
+install.packages("reshape2")
+?melt
+??melt
+melt
+?melt
+install.packages("scales")
+install.packages("knitr")
+install.packages("TDMR")
+install.packages("tcltk")
+Bioconductor("")source("https://bioconductor.org/biocLite.R")
+source("https://bioconductor.org/biocLite.R")
+source("http://bioconductor.org/biocLite.R")
+Bioclite("ALL")
+biocLite("ALL")
+data("ALL")
+library("all")
+data("ALL")
+data("all")
+data("ALL")
+library(ALL)
+data("ALL")
+install.packages("hgu95av2.db")
+biocLite("hgu95av2.db")
+install.packages("‘rjson")
+library("rjson")
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("Biobase"))
+source("https://bioconductor.org/biocLite.R")
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("Biobase"))
+library
+library("biobase")
+library("Biobase")
+library(convert)
+install.packages("conver")
+library(convert)
+Bioclite("convert")
+biocLite("convert")
+library(convert)
+as(object, "ExpressionSet")
+install.packages("roxygen2")
+version
+install.packages("GGally")
+source("https://bioconductor.org/biocLite.R")#
+biocLite("ballgown")
+ballgown::geneNames(bg_chrX)[12]
+install.packages("plotly")
+install.packages("devtools")
+library(plotly)#
+library(devtools)#
+devtools::install_github("ropensci/plotly")#
+g <- ggplot(faithful, aes(x = eruptions, y = waiting)) +#
+  stat_density_2d(aes(fill = ..level..), geom = "polygon") + #
+  xlim(1, 6) + ylim(40, 100)#
+ggplotly(g)
+library(plotly)#
+library(devtools)#
+devtools::install_github("ropensci/plotly")#
+g <- ggplot2(faithful, aes(x = eruptions, y = waiting)) +#
+  stat_density_2d(aes(fill = ..level..), geom = "polygon") + #
+  xlim(1, 6) + ylim(40, 100)#
+ggplotly(g)
+install.packages("shiny")
+library(plotly)#
+library(devtools)#
+library(ggplot2)#
+library("shiny")#
+devtools::install_github("ropensci/plotly")#
+g <- ggplot(faithful, aes(x = eruptions, y = waiting)) +#
+  stat_density_2d(aes(fill = ..level..), geom = "polygon") + #
+  xlim(1, 6) + ylim(40, 100)#
+ggplotly(g)#
+plotly_json(g)
+install.packages("listviewer")
+library(plotly)#
+library(devtools)#
+library(ggplot2)#
+library("shiny")#
+devtools::install_github("ropensci/plotly")#
+g <- ggplot(faithful, aes(x = eruptions, y = waiting)) +#
+  stat_density_2d(aes(fill = ..level..), geom = "polygon") + #
+  xlim(1, 6) + ylim(40, 100)#
+ggplotly(g)#
+plotly_json(g)
+ggplotly(g)
+ggiris <- qplot(Petal.Width, Sepal.Length, data = iris, color = Species)#
+ggiris#
+ggplotly(ggiris)
+require(ggplot2)#
+data(diamonds)#
+set.seed(42)#
+small <- diamonds[sample(nrow(diamonds), 1000), ]#
+p <- ggplot(data = small, mapping = aes(x = carat, y = price)) + geom_point()#
+ggplotly(p)#
+plotly_json(p)
+require(ggplot2)#
+data(diamonds)#
+set.seed(42)#
+small <- diamonds[sample(nrow(diamonds), 1000), ]
+p <- ggplot(small)+ geom_density(aes(x=price,fill=clarity))#
+ggplotly(p)
+require(ggplot2)#
+data(diamonds)#
+set.seed(42)#
+small <- diamonds[sample(nrow(diamonds), 1000), ]#
+p <- ggplot(data = small, mapping = aes(x = carat, y = price)) + geom_point()#
+p <- ggplot(small)+ geom_density(aes(x=price,fill=clarity))#
+ggplotly(p)#
+plotly_json(p)
+ggplotly(p)
+devtools::install_github("lchiffon/wordcloud2")
+library(wordcloud2)#
+wordcloud2(demoFreq, size = 1,shape = 'star')
+library(wordcloud2)#
+rt <- read.table(file = "/Users/stead/Desktop/Word.txt", sep = "\t", fill = TRUE)#
+rt$Fre <- rt$Word#
+rt$Word <- row.names(rt)#
+tiff(filename = "Nordata_Word_Cloud.tiff", width = 512, height = 512)#
+wordcloud2(rt, size = 1, shape = "pentagon")#
+wordcloud2Output(rt, width = "100%", height = "400px")#
+dev.off()
+library(wordcloud2)#
+rt <- read.table(file = "/Users/stead/Desktop/Nordata_Word.txt", sep = "\t", fill = TRUE, stringsAsFactors = FALSE)#
+wordcloud2(rt, size = 1.6)#
+letterCloud(rt, word = "N")
+install.packages("htmlwidgets")
+install.packages("require('webshot')")
+install.packages("webshot")
+install.packages("htmlwidgets")
+library(wordcloud2)#
+library(webshot)#
+library(htmlwidgets)#
+rt <- read.table(file = "/Users/stead/Desktop/Nordata_Word.txt", sep = "\t", fill = TRUE, stringsAsFactors = FALSE)#
+#Nordata <- letterCloud(rt, word = "N")#
+Nordata <- wordcloud2(rt, size = 1.6)#
+saveWidget(Nordata,"tmp.html",selfcontained = F)#
+webshot("tmp.html", "Nordata.pdf", delay =5, vwidth = 480, vheight=480)
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("GO.db", "preprocessCore", "impute"))
+source("https://bioconductor.org/biocLite.R")
+biocLite(c("GO.db")
+)
+biocLite(c("preprocessCore")
+)
+biocLite(c("impute")
+)
+library(WGCNA)
+install.packages("WGCNA")
+ls
+library(WGCNA)
+install.packages("pathview")
+library(pathview)
+library(affy)
+source("https://bioconductor.org/biocLite.R")#
+biocLite("mygene")
+install.packages("ggdendro")
+library(ggdendro)
+install_github("sachsmc/plotROC")
+devtools::install_github("sachsmc/plotROC")
+install.packages("plotROC")
+library(glmnet)
+library('glmnet')
+source("https://bioconductor.org/biocLite.R")#
+biocLite("nethet")
+source("http://bioconductor.org/biocLite.R")
+library(circlize)
+R
+version
+source("https://bioconductor.org/biocLite.R")#
+biocLite("survcomp")
+install.packages('bootstrap')
+biocLite("survcomp")
+source("https://bioconductor.org/biocLite.R")#
+biocLite("survcomp")
+source("http://bioconductor.org/biocLite.R")
+install.packages('factoextra')
+load('/Users/stead/Desktop/subtype_analysis/signature/gene_pairs/LUAD/mat_pairs/FC_0.3/GSE29013_mat_pair_sur.Rdata')
+GSE29013_mat_pair_sur[1, ]
+GSE29013_mat_pair_sur[1:10, 1:10]
+GSE29013_mat_pair_sur[1:20, 1:10]
+GSE29013_mat_pair_sur[1:30, 1:10]
+GSE29013_mat_pair_sur[1:20, 1:10]
+GSE29013_mat_pair_sur[1:20, 1:11]
+GSE29013_mat_pair_sur[1:20, 1:12]
+GSE29013_mat_pair_sur[1:20, 1:13]
+GSE29013_mat_pair_sur[1:20, 1:14]
+GSE29013_mat_pair_sur[1:20, 1:15]
+GSE29013_mat_pair_sur[1:20, 1:16]
+GSE29013_mat_pair_sur[1:20, 1:16]GSE29013_mat_pair_sur <- GSE29013_mat_pair_sur[, !apply(GSE29013_mat_pair_sur, 2, function(x){all(all(x == 1) | all(x == 0))})]
+GSE29013_mat_pair_sur <- GSE29013_mat_pair_sur[, !apply(GSE29013_mat_pair_sur, 2, function(x){all(all(x == 1) | all(x == 0))})]
+GSE29013_mat_pair_sur
+GSE29013_mat_pair_sur[, !apply(GSE29013_mat_pair_sur, 2, function(x){all(all(x == 1) | all(x == 0))})]
+library(maftools)#
+library(reshape2)#
+library(ggplot2)
+install.packages('ggdendro')
+library(ggdendro)
+install.packages('ggcorrplot')
+install.packages('rgl')
+install.packages('ROCR')
+library(ROCR)
+? scatter3D
+?? scatter3D
+install.packages('googleCharts')
+library(devtools)#
+install_github('dviraran/xCell')#
+install_github('GfellerLab/EPIC')#
+install_github('ebecht/MCPcounter/Source')
+devtools::install_github('grst/immunedeconv')
+rsconnect::deployApp('/Users/stead/JS_data/source_tree/project_code/seer/AMLRS_nomogram')
+devtools::install_github("hrbrmstr/albersusa")
+getwd()
+setwd('/Users/stead/JS_data/source_tree/project_code/plan_publish/chinese_quartet/vis_web')
+library(shiny)

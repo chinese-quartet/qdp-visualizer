@@ -1,0 +1,15 @@
+.content-box {
+  height: calc(100vh - 20px);
+  overflow-y: auto;
+  font-size: 1.8rem;
+}
+
+.content-box h3 {
+  margin-top: 0;
+}
+
+.box-body {
+  max-height: calc(100vh - 20px);
+  overflow: auto;
+  font-size: 1.8rem;
+}
