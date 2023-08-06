@@ -117,6 +117,18 @@ shinyServer(function(input, output, session){
   df_intra_met <-  reactive(
     fread(file = paste('./data/rnaseq/qc_type/intra_batch/', input$qc_type_intra, '.txt', sep = ''))
   )
+
+  observe({
+    if (input$group_a_intra == 'libraryPrep' || input$group_a_intra == 'quality') {
+      updateSelectizeInput(session, "qc_type_intra",
+                           choices = c('Tree_Metrics'),
+                           selected = 'Tree_Metrics')
+    } else {
+      updateSelectizeInput(session, "qc_type_intra",
+                           choices = c('Detected_Gene', 'Tree_Metrics'),
+                           selected = 'Tree_Metrics')
+    }
+  })
   
   
   observe({
