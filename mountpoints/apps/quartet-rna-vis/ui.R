@@ -116,7 +116,7 @@ sidebar <- dashboardSidebar(
                                                             label = 'Element of Group',
                                                             choices = NULL,
                                                             options = list('actions-box' = TRUE),
-                                                            multiple = T),
+                                                            multiple = TRUE),
                                   selectizeInput("ref_sample",
                                                  label = 'Reference Sample',
                                                  choices = NULL)

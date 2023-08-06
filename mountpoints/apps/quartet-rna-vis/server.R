@@ -381,9 +381,18 @@ shinyServer(function(input, output, session){
   #########################pca########################
   observe({
     group_pca  = unique(df_exp_annot[[input$group_pca]])
-    updatePickerInput(session, "group_pca_unit",
-                         choices = group_pca,
-                         selected = group_pca[1])
+    if (input$group_pca == "sample") {
+      # When the group_pca is sample, only one sample can be selected as the group
+      updatePickerInput(session, "group_pca_unit",
+                        choices = group_pca,
+                        selected = group_pca[1],
+                        options = list(maxOptions = 1, actionsBox = FALSE, clearOptions = TRUE))
+    } else {
+      updatePickerInput(session, "group_pca_unit",
+                        choices = group_pca,
+                        selected = group_pca[1],
+                        options = list(maxOptions = 999, actionsBox = TRUE, clearOptions = TRUE))
+    }
   })
 
   observe({
@@ -391,10 +400,17 @@ shinyServer(function(input, output, session){
       updateSelectizeInput(session, "ref_sample",
                            choices = c('D5', 'D6', 'F7', 'M8'),
                            selected = 'D5')
+      # When the pca_scale is relative, only batch can be selected as the group
+      updateSelectizeInput(session, "group_pca",
+                           choices = c('batch'),
+                           selected = 'batch')
     } else {
       updateSelectizeInput(session, "ref_sample",
                            choices = 'None',
                            selected = 'None')
+      updateSelectizeInput(session, "group_pca",
+                           choices = pca_group,
+                           selected = 'batch')
     }
   })
   
